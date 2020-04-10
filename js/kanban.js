@@ -19,6 +19,13 @@ const create_item = () => {
 
   var item = document.createElement("div");
   item.classList.add("item");
+  item.id = 'item-' + order
+  item.draggable = true
+  item.addEventListener("dragstart" , (event) => {
+
+        event.DataTransfer.setData('text', event.target.id);
+  });
+  
 };
 
 document.querySelectorAll('.drop').forEach(element => {
