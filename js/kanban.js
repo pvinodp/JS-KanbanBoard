@@ -43,10 +43,27 @@ const create_item = () => {
             order = order +1;
             item.innerHTML = input.value;
             adding = false;
+      }else{
+        error.innerHTML = message;
       }
   });
+  item.appendChild(save_btn);
+  return item;
 };
 
 
 document.querySelectorAll('.drop').forEach(element => {
+
+    element.addEventListener("drop" , (event) =>{
+
+        event.preventDefault();
+        const id = event.dataTransfer.getData('text');
+        event.target.appendChild(document.getElementById(id));
+    });
+
+    element.addEventListener("dragover" , (event) => {
+
+      event.preventDefault();
+
+    });
 });
