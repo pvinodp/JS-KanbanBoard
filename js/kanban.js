@@ -17,16 +17,36 @@ add_btn.addEventListener('click', () => {
 
 const create_item = () => {
 
-  var item = document.createElement("div");
+  let item = document.createElement("div");
   item.classList.add("item");
   item.id = 'item-' + order
   item.draggable = true
   item.addEventListener("dragstart" , (event) => {
 
-        event.DataTransfer.setData('text', event.target.id);
+        event.dataTransfer.setData('text', event.target.id);
   });
-  
+  item.addEventListener("dragend", (event) =>{
+
+      event.dataTransfer.clearData();
+  });
+  let input = document.createElement("input");
+  item.appendChild(input);
+
+  let save_btn = document.createElement('button');
+  save_btn.innerHTML = 'Save';
+
+  save_btn.addEventListener('click', () => {
+
+      error.innerHTML ='';
+      if ( input.value != '' ){
+
+            order = order +1;
+            item.innerHTML = input.value;
+            adding = false;
+      }
+  });
 };
+
 
 document.querySelectorAll('.drop').forEach(element => {
 });
